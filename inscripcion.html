@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Copa Barrio FC · Inscripción</title>
 
-    <!-- 1) Bootstrap (instalado con pnpm) -->
-    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 1) Bootstrap desde la CDN jsDelivr (node_modules no se sube a GitHub/Vercel) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
     <!-- 2) Fuentes de Google: una para títulos y otra para el texto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -314,10 +315,13 @@
         </div>
     </div>
 
-    <!-- El JS de Bootstrap va al final del body, con <script src>, NO con <link> -->
-    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Librería de confeti (instalada con pnpm add canvas-confetti) -->
-    <script src="node_modules/canvas-confetti/dist/confetti.browser.js"></script>
+    <!-- El JS de Bootstrap va al final del body, con <script src>, NO con <link>.
+         Se carga desde la CDN porque node_modules no se sube al servidor -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <!-- Librería de confeti (misma versión que instalamos con pnpm, servida desde la CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.js"
+            integrity="sha384-bopE5cbMjKUprmGnIRk2UdvCnHImrRLCtNW2uR6oDYqO+o3XWJeuIrWWxDzeDgNW" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
 </html>
