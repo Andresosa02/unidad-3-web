@@ -463,6 +463,18 @@ body {
     --sombra-fuerte: 0 18px 40px rgba(0, 0, 0, .14);
 }
 
+/* Footer pegado abajo: el body ocupa toda la pantalla y el <main> se estira
+   para llenar el espacio que sobra, así no queda un hueco debajo del footer */
+body.presentacion {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.presentacion main {
+    flex: 1;
+}
+
 /* Encabezado claro, sin el degradado ni las líneas de la cancha */
 .presentacion .encabezado {
     background: var(--blanco-linea);
