@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <!-- Esta línea es la base del diseño responsivo: le dice al celular que use su ancho real -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copa Barrio FC · Inscripción</title>
+
+    <!-- 1) Bootstrap (instalado con pnpm) -->
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- 2) Fuentes de Google: una para títulos y otra para el texto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- 3) Nuestro CSS va DESPUÉS de Bootstrap para poder sobrescribir sus estilos -->
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ===================== ENCABEZADO ===================== -->
+    <header class="encabezado">
+        <!-- navbar-expand-md: en pantallas medianas o más grandes el menú se ve completo;
+             en celular se colapsa en el botón de "hamburguesa" -->
+        <nav class="navbar navbar-expand-md navbar-dark">
+            <div class="container">
+                <a class="navbar-brand marca" href="#">Copa Barrio FC</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#menu" aria-controls="menu" aria-expanded="false"
+                        aria-label="Abrir menú">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Presentación</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#inscripcion">Inscripción</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#torneo">Torneo</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Portada (hero) -->
+        <section id="inicio" class="portada text-center">
+            <div class="container">
+                <p class="etiqueta">Temporada 2026</p>
+                <h1 class="titulo-portada">Inscribe a tu jugador</h1>
+                <p class="lead">Torneo amateur de fútbol 7 · Categorías infantil, juvenil y libre</p>
+
+                <!-- Datos rápidos del torneo -->
+                <div class="datos-portada">
+                    <div class="dato"><strong>3</strong><span>categorías</span></div>
+                    <div class="dato"><strong>24</strong><span>equipos</span></div>
+                    <div class="dato"><strong>7 vs 7</strong><span>formato</span></div>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <!-- ===================== CONTENIDO PRINCIPAL ===================== -->
+    <main class="container my-5" id="inscripcion">
+        <!-- Grid de Bootstrap: row + col. En celular ocupa 12 columnas (todo el ancho);
+             en pantallas grandes (lg) ocupa 8 columnas y queda centrado con mx-auto -->
+        <div class="row">
+            <div class="col-12 col-lg-8 mx-auto">
+                <div class="tarjeta-formulario">
+                    <h2 class="titulo-seccion">Ficha de inscripción</h2>
+                    <p class="text-muted mb-4">Los campos con <span class="obligatorio">*</span> son obligatorios.</p>
+
+                    <!-- novalidate: desactiva los globos de error del navegador para usar los de Bootstrap.
+                         needs-validation: clase que usamos en script.js para validar -->
+                    <form id="formInscripcion" class="needs-validation" novalidate>
+
+                        <!-- ---------- Datos personales ---------- -->
+                        <fieldset class="mb-4">
+                            <legend class="subtitulo">Datos del jugador</legend>
+
+                            <!-- g-3: espacio entre columnas. col-md-6: mitad del ancho desde tablet en adelante -->
+                            <div class="row g-3">
+                                <div class="col-12 col-md-6">
+                                    <label for="nombre" class="form-label">Nombre completo <span class="obligatorio">*</span></label>
+                                    <!-- pattern: solo letras y espacios, mínimo 3 caracteres -->
+                                    <input type="text" class="form-control" id="nombre" name="nombre"
+                                           placeholder="Ej. Lionel Andrés"
+                                           pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]{3,}" required>
+                                    <div class="invalid-feedback">Escribe tu nombre (solo letras, mínimo 3).</div>
+                                </div>
+
+                                <div class="col-12 col-md-6">
+                                    <label for="nacimiento" class="form-label">Fecha de nacimiento <span class="obligatorio">*</span></label>
+                                    <input type="date" class="form-control" id="nacimiento" name="nacimiento" required>
+                                    <div class="invalid-feedback">Selecciona tu fecha de nacimiento.</div>
+                                </div>
+
+                                <div class="col-12 col-md-6">
+                                    <label for="correo" class="form-label">Correo electrónico <span class="obligatorio">*</span></label>
+                                    <!-- type="email" ya valida que tenga formato de correo -->
+                                    <input type="email" class="form-control" id="correo" name="correo"
+                                           placeholder="nombre@correo.com" required>
+                                    <div class="invalid-feedback">Escribe un correo válido.</div>
+                                </div>
+
+                                <div class="col-12 col-md-6">
+                                    <label for="telefono" class="form-label">Teléfono <span class="obligatorio">*</span></label>
+                                    <!-- pattern: exactamente 10 dígitos -->
+                                    <input type="tel" class="form-control" id="telefono" name="telefono"
+                                           placeholder="10 dígitos" pattern="[0-9]{10}" maxlength="10" required>
+                                    <div class="invalid-feedback">El teléfono debe tener 10 números.</div>
+                                </div>
+
+                                <div class="col-12 col-md-6">
+                                    <label for="dorsal" class="form-label">Número de camiseta</label>
+                                    <!-- type="number" con min y max: solo del 1 al 99 -->
+                                    <input type="number" class="form-control" id="dorsal" name="dorsal"
+                                           min="1" max="99" placeholder="1 - 99">
+                                    <div class="invalid-feedback">Elige un número del 1 al 99.</div>
+                                </div>
+
+                                <div class="col-12 col-md-6">
+                                    <label for="categoria" class="form-label">Categoría <span class="obligatorio">*</span></label>
+                                    <!-- SELECT: lista desplegable. La primera opción vacía obliga a elegir -->
+                                    <select class="form-select" id="categoria" name="categoria" required>
+                                        <option value="" selected disabled>Elige una categoría…</option>
+                                        <option value="infantil">Infantil (8 - 12 años)</option>
+                                        <option value="juvenil">Juvenil (13 - 17 años)</option>
+                                        <option value="libre">Libre (18+ años)</option>
+                                    </select>
+                                    <div class="invalid-feedback">Selecciona una categoría.</div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- ---------- Datos deportivos ---------- -->
+                        <fieldset class="mb-4">
+                            <legend class="subtitulo">Perfil en la cancha</legend>
+
+                            <!-- RADIO: todos comparten el mismo name, así solo se puede elegir UNO -->
+                            <p class="form-label">Posición principal <span class="obligatorio">*</span></p>
+                            <div class="grupo-opciones mb-3">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="posicion" id="portero" value="portero" required>
+                                    <label class="form-check-label" for="portero">Portero</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="posicion" id="defensa" value="defensa">
+                                    <label class="form-check-label" for="defensa">Defensa</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="posicion" id="medio" value="medio">
+                                    <label class="form-check-label" for="medio">Mediocampista</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="posicion" id="delantero" value="delantero">
+                                    <label class="form-check-label" for="delantero">Delantero</label>
+                                </div>
+                            </div>
+
+                            <!-- CHECKBOX: cada uno es independiente, se pueden marcar VARIOS -->
+                            <p class="form-label">Días disponibles para jugar</p>
+                            <div class="grupo-opciones mb-3">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="viernes" name="dias" value="viernes">
+                                    <label class="form-check-label" for="viernes">Viernes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="sabado" name="dias" value="sabado">
+                                    <label class="form-check-label" for="sabado">Sábado</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="domingo" name="dias" value="domingo">
+                                    <label class="form-check-label" for="domingo">Domingo</label>
+                                </div>
+                            </div>
+
+                            <!-- TEXTAREA: texto largo de varias líneas -->
+                            <label for="comentarios" class="form-label">Cuéntanos de tu experiencia</label>
+                            <textarea class="form-control" id="comentarios" name="comentarios" rows="4"
+                                      maxlength="300" placeholder="¿Has jugado en algún equipo? ¿Cuál es tu jugador favorito?"></textarea>
+                            <div class="form-text">Máximo 300 caracteres.</div>
+                        </fieldset>
+
+                        <!-- ---------- Aceptar reglamento ---------- -->
+                        <div class="form-check mb-4">
+                            <input class="form-check-input" type="checkbox" id="reglamento" name="reglamento" required>
+                            <label class="form-check-label" for="reglamento">
+                                Acepto el reglamento del torneo <span class="obligatorio">*</span>
+                            </label>
+                            <div class="invalid-feedback">Debes aceptar el reglamento para inscribirte.</div>
+                        </div>
+
+                        <!-- Botones: en celular ocupan todo el ancho (d-grid); desde md se ponen en línea -->
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="reset" class="btn btn-outline-secondary">Limpiar</button>
+                            <button type="submit" class="btn btn-cancha">Inscribirme</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===================== INFORMACIÓN DEL TORNEO ===================== -->
+    <section id="torneo" class="seccion seccion-clara">
+        <div class="container">
+            <h2 class="titulo-seccion">Información del torneo</h2>
+            <p class="text-muted mb-4">Todo lo que necesitas saber antes de salir a la cancha.</p>
+
+            <div class="row g-4">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="tarjeta-info">
+                        <h3>Fechas</h3>
+                        <p>Inscripciones hasta el 15 de octubre. La primera fecha se juega el sábado 24 de octubre.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="tarjeta-info">
+                        <h3>Categorías</h3>
+                        <p>Infantil (8 a 12 años), juvenil (13 a 17 años) y libre (18 años en adelante).</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="tarjeta-info">
+                        <h3>Premios</h3>
+                        <p>Trofeo y medallas para el campeón, además de premio al goleador y a la valla menos vencida.</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="tarjeta-info">
+                        <h3>Requisitos</h3>
+                        <p>Documento de identidad, uniforme del equipo y espinilleras. Los menores de edad necesitan permiso del acudiente.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Acordeón de Bootstrap: cada pregunta se abre y se cierra al hacer clic -->
+            <h3 class="subtitulo mt-5">Preguntas frecuentes</h3>
+            <div class="accordion acordeon" id="preguntas">
+                <div class="accordion-item">
+                    <h4 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#pregunta1" aria-expanded="false" aria-controls="pregunta1">
+                            ¿La inscripción tiene costo?
+                        </button>
+                    </h4>
+                    <div id="pregunta1" class="accordion-collapse collapse" data-bs-parent="#preguntas">
+                        <div class="accordion-body">No. La inscripción individual es gratuita; cada equipo solo aporta para el arbitraje de sus partidos.</div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h4 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#pregunta2" aria-expanded="false" aria-controls="pregunta2">
+                            ¿Puedo inscribirme si no tengo equipo?
+                        </button>
+                    </h4>
+                    <div id="pregunta2" class="accordion-collapse collapse" data-bs-parent="#preguntas">
+                        <div class="accordion-body">Sí. Los jugadores sin equipo se reparten entre los equipos de su categoría que tengan cupos libres.</div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h4 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#pregunta3" aria-expanded="false" aria-controls="pregunta3">
+                            ¿Cuánto dura cada partido?
+                        </button>
+                    </h4>
+                    <div id="pregunta3" class="accordion-collapse collapse" data-bs-parent="#preguntas">
+                        <div class="accordion-body">Dos tiempos de 25 minutos con 5 minutos de descanso. En la categoría infantil son tiempos de 20 minutos.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== PIE DE PÁGINA ===================== -->
+    <footer class="pie" id="contacto">
+        <div class="container">
+            <div class="row gy-3 text-center text-md-start">
+                <div class="col-12 col-md-4">
+                    <h3 class="marca">Copa Barrio FC</h3>
+                    <p class="mb-0">El fútbol del barrio, en serio.</p>
+                </div>
+                <div class="col-12 col-md-4">
+                    <h4 class="subtitulo-pie">Contacto</h4>
+                    <p class="mb-0">contacto@copabarrio.com<br>Tel. 555 123 4567</p>
+                </div>
+                <div class="col-12 col-md-4">
+                    <h4 class="subtitulo-pie">Sede</h4>
+                    <p class="mb-0">Cancha Municipal · Sábados 9:00 a 14:00</p>
+                </div>
+            </div>
+            <hr>
+            <p class="text-center mb-0 small">&copy; 2026 Copa Barrio FC · Actividad Unidad 3 · <a class="enlace-pie" href="index.html">CIPA Cod Point</a></p>
+        </div>
+    </footer>
+
+    <!-- ===================== MODAL DE CONFIRMACIÓN ===================== -->
+    <!-- Ventana emergente de Bootstrap. Está oculta hasta que script.js la abre -->
+    <div class="modal fade" id="modalExito" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
+        <!-- modal-dialog-centered: centra la ventana vertical y horizontalmente -->
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content modal-gol text-center">
+                <div class="modal-body p-4 p-md-5">
+                    <h2 class="titulo-seccion" id="tituloModal">¡Golazo!</h2>
+                    <p class="mb-1">Tu inscripción quedó <strong>lista</strong>.</p>
+                    <!-- Aquí script.js escribe el nombre del jugador -->
+                    <p class="text-muted" id="textoModal"></p>
+                    <button type="button" class="btn btn-cancha mt-2" data-bs-dismiss="modal">¡Vamos!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- El JS de Bootstrap va al final del body, con <script src>, NO con <link> -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Librería de confeti (instalada con pnpm add canvas-confetti) -->
+    <script src="node_modules/canvas-confetti/dist/confetti.browser.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

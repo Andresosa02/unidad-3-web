@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIPA Cod Point · Unidad 3</title>
+
+    <!-- 1) Bootstrap (instalado con pnpm) -->
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- 2) Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- 3) Nuestro CSS (compartido con la página del formulario) -->
+    <link href="styles.css" rel="stylesheet">
+</head>
+<!-- class="presentacion": activa la paleta neutra (gris) definida en styles.css -->
+<body class="presentacion">
+
+    <!-- ===================== ENCABEZADO ===================== -->
+    <header class="encabezado">
+        <section class="portada portada-presentacion">
+            <div class="container">
+                <p class="etiqueta">CIPA · Actividad de aprendizaje · Unidad 3</p>
+                <h1 class="titulo-portada">Cod Point</h1>
+            </div>
+        </section>
+    </header>
+
+    <!-- ===================== INTEGRANTES ===================== -->
+    <main id="integrantes" class="container seccion">
+        <h2 class="titulo-seccion">Integrantes</h2>
+        <p class="text-muted mb-4">Entra al sitio de cada integrante del CIPA.</p>
+
+        <!-- En celular 1 columna, en tablet 2 y en pantallas grandes 4.
+             Todos los botones llevan target="_blank" para abrir el sitio en una pestaña nueva
+             (rel="noopener" es por seguridad: la página nueva no puede controlar esta) -->
+        <div class="row g-4">
+            <div class="col-12 col-sm-6 col-lg-3">
+                <article class="tarjeta-integrante">
+                    <span class="avatar">LA</span>
+                    <h3 class="nombre">Luis Felipe Amorocho Ayala</h3>
+                    <a href="inscripcion.html" class="btn btn-cancha"
+                       target="_blank" rel="noopener">Visitar sitio</a>
+                </article>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <article class="tarjeta-integrante">
+                    <span class="avatar">DH</span>
+                    <h3 class="nombre">Diego Hernández Caraballo</h3>
+                    <!-- Pendiente: cambiar href="#" por el enlace de Diego, quitar "disabled" y aria-disabled.
+                         target="_blank" ya está puesto para que abra en una pestaña nueva -->
+                    <a href="#" class="btn btn-cancha disabled" aria-disabled="true"
+                       target="_blank" rel="noopener">Próximamente</a>
+                </article>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <article class="tarjeta-integrante">
+                    <span class="avatar">AJ</span>
+                    <h3 class="nombre">Andrés Felipe Jiménez Sosa</h3>
+                    <!-- Pendiente: cambiar href="#" por el enlace de Andrés, quitar "disabled" y aria-disabled.
+                         target="_blank" ya está puesto para que abra en una pestaña nueva -->
+                    <a href="#" class="btn btn-cancha disabled" aria-disabled="true"
+                       target="_blank" rel="noopener">Próximamente</a>
+                </article>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <article class="tarjeta-integrante">
+                    <span class="avatar">JR</span>
+                    <h3 class="nombre">José Miguel Ramírez Bohórquez</h3>
+                    <a href="https://joser177.github.io/tiposdefutbol/" class="btn btn-cancha"
+                       target="_blank" rel="noopener">Visitar sitio</a>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===================== PIE DE PÁGINA ===================== -->
+    <footer class="pie">
+        <div class="container text-center">
+            <p class="mb-0 small">
+                CIPA Cod Point · Luis Amorocho, Diego Hernández, Andrés Jiménez y José Ramírez · 2026
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

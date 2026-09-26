@@ -1,0 +1,526 @@
+/* =========================================================
+   ESTILOS PERSONALIZADOS - CIPA Cod Point · Copa Barrio FC
+   Este archivo se carga DESPUÉS de Bootstrap, por eso
+   lo que escribamos aquí tiene prioridad.
+   Lo usan las dos páginas: index.html y inscripcion.html
+   ========================================================= */
+
+/* ---------- Variables de color (se definen una vez y se reutilizan) ---------- */
+:root {
+    --verde-cancha: #0f7a3d;
+    --verde-oscuro: #0a4d27;
+    --verde-noche: #062e18;
+    --amarillo-tarjeta: #ffc93c;
+    --blanco-linea: #ffffff;
+    --fondo: #f3f6f2;
+    --fondo-claro: #e8efe9;
+    --borde: #d6e3da;
+    --texto: #1d2a21;
+    --sombra: 0 10px 30px rgba(10, 77, 39, .12);
+    --sombra-fuerte: 0 18px 40px rgba(10, 77, 39, .22);
+}
+
+/* ---------- Base ---------- */
+html {
+    scroll-behavior: smooth; /* los enlaces #seccion bajan suavemente */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--fondo);
+    color: var(--texto);
+}
+
+::selection {
+    background-color: var(--amarillo-tarjeta);
+    color: var(--texto);
+}
+
+/* ---------- Encabezado ---------- */
+.encabezado {
+    /* Degradado verde que simula el pasto de la cancha, con franjas como el césped cortado */
+    background:
+        repeating-linear-gradient(90deg, rgba(255, 255, 255, .03) 0 80px, transparent 80px 160px),
+        linear-gradient(135deg, var(--verde-noche), var(--verde-cancha));
+    color: var(--blanco-linea);
+}
+
+.marca {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+}
+
+.navbar .marca {
+    transition: color .2s;
+}
+
+.navbar .marca:hover {
+    color: var(--amarillo-tarjeta);
+}
+
+/* Subrayado amarillo que crece desde el centro al pasar el mouse */
+.navbar .nav-link {
+    position: relative;
+    font-weight: 500;
+}
+
+.navbar .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    bottom: .2rem;
+    height: 2px;
+    background-color: var(--amarillo-tarjeta);
+    transition: left .25s, right .25s;
+}
+
+.navbar .nav-link:hover {
+    color: var(--amarillo-tarjeta);
+}
+
+.navbar .nav-link:hover::after {
+    left: .5rem;
+    right: .5rem;
+}
+
+.portada {
+    padding: 4rem 0 5rem;
+    /* Líneas blancas de la cancha: un círculo central hecho con un degradado radial */
+    background-image: radial-gradient(circle at center,
+        transparent 90px, rgba(255, 255, 255, .15) 91px, rgba(255, 255, 255, .15) 94px, transparent 95px);
+}
+
+.etiqueta {
+    display: inline-block;
+    background-color: var(--amarillo-tarjeta);
+    color: var(--texto);
+    font-weight: 600;
+    padding: .25rem .9rem;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+}
+
+.titulo-portada {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 8vw, 5rem); /* crece o se achica según el ancho de pantalla */
+    line-height: 1;
+}
+
+/* Datos rápidos debajo del título (3 categorías · 24 equipos · 7 vs 7) */
+.datos-portada {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.dato {
+    min-width: 110px;
+    padding: .7rem 1.2rem;
+    border: 1px solid rgba(255, 255, 255, .25);
+    border-radius: .8rem;
+    background-color: rgba(255, 255, 255, .08);
+    transition: transform .2s, background-color .2s, border-color .2s;
+}
+
+.dato:hover {
+    transform: translateY(-4px);
+    background-color: rgba(255, 255, 255, .16);
+    border-color: var(--amarillo-tarjeta);
+}
+
+.dato strong {
+    display: block;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--amarillo-tarjeta);
+}
+
+.dato span {
+    font-size: .85rem;
+    opacity: .85;
+}
+
+/* ---------- Portada de la página de presentación ---------- */
+.portada-presentacion {
+    padding: 4rem 0;
+    /* El círculo central se corre a la derecha para que no quede detrás del texto */
+    background-image: radial-gradient(circle at 80% 50%,
+        transparent 140px, rgba(255, 255, 255, .12) 141px, rgba(255, 255, 255, .12) 144px, transparent 145px);
+}
+
+.portada-presentacion .titulo-portada {
+    font-size: clamp(4rem, 14vw, 8rem);
+    margin: 0;
+}
+
+/* ---------- Secciones ---------- */
+/* Solo arriba y abajo, para no quitarle al .container su margen lateral */
+.seccion {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.seccion-clara {
+    background-color: var(--fondo-claro);
+}
+
+/* ---------- Tarjetas de integrantes ---------- */
+/* Flex en columna: el botón queda siempre abajo aunque el nombre ocupe 1 o 2 líneas */
+.tarjeta-integrante {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    background-color: var(--blanco-linea);
+    border-radius: 1rem;
+    padding: 1.75rem 1.5rem;
+    box-shadow: var(--sombra);
+    border-bottom: 4px solid transparent;
+    transition: transform .25s, box-shadow .25s, border-color .25s;
+}
+
+.tarjeta-integrante:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--sombra-fuerte);
+    border-bottom-color: var(--amarillo-tarjeta);
+}
+
+/* Círculo con las iniciales: al pasar el mouse cambia de color y gira un poco */
+.avatar {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1.25rem;
+    border-radius: 50%;
+    background-color: var(--verde-cancha);
+    color: var(--blanco-linea);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    transition: transform .3s, background-color .3s, color .3s;
+}
+
+.tarjeta-integrante:hover .avatar {
+    transform: rotate(-8deg) scale(1.08);
+    background-color: var(--amarillo-tarjeta);
+    color: var(--verde-oscuro);
+}
+
+.nombre {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+}
+
+.tarjeta-integrante .btn-cancha {
+    margin-top: auto; /* empuja el botón al fondo de la tarjeta */
+    padding: .5rem 1.4rem;
+}
+
+/* Botón de un sitio que todavía no está listo */
+.btn-cancha.disabled {
+    background-color: var(--borde);
+    color: #5d6e62;
+    opacity: 1;
+}
+
+/* ---------- Tarjetas de información ---------- */
+.tarjeta-info {
+    height: 100%;
+    background-color: var(--blanco-linea);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    border: 1px solid var(--borde);
+    transition: transform .25s, box-shadow .25s, border-color .25s;
+}
+
+.tarjeta-info:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--sombra);
+    border-color: var(--verde-cancha);
+}
+
+.tarjeta-info h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.tarjeta-info p {
+    margin: 0;
+    color: #4a5a4f;
+    font-size: .95rem;
+}
+
+.tarjeta-info code {
+    color: var(--verde-oscuro);
+    background-color: var(--fondo);
+    padding: .05rem .3rem;
+    border-radius: .3rem;
+}
+
+/* ---------- Tarjeta del formulario ---------- */
+.tarjeta-formulario {
+    background-color: var(--blanco-linea);
+    border-radius: 1rem;
+    padding: 2.5rem;
+    box-shadow: var(--sombra);
+    border-top: 6px solid var(--verde-cancha);
+    /* La sube un poco para que "monte" sobre la portada */
+    margin-top: -4rem;
+    position: relative;
+}
+
+.titulo-seccion {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem;
+    color: var(--verde-oscuro);
+    margin-bottom: .25rem;
+}
+
+.subtitulo {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--verde-cancha);
+    border-bottom: 2px dashed var(--borde);
+    padding-bottom: .4rem;
+    margin-bottom: 1rem;
+}
+
+.obligatorio {
+    color: #d63333;
+}
+
+.grupo-opciones {
+    background-color: var(--fondo);
+    border-radius: .6rem;
+    padding: .75rem 1rem;
+}
+
+/* Cada opción (radio o checkbox) se ve como una "pastilla" que reacciona al mouse */
+.grupo-opciones .form-check-inline {
+    margin: .25rem .5rem .25rem 0;
+    padding: .4rem .9rem .4rem 2.1rem;
+    border: 1px solid var(--borde);
+    border-radius: 50px;
+    background-color: var(--blanco-linea);
+    transition: border-color .2s, background-color .2s, transform .2s;
+}
+
+.grupo-opciones .form-check-inline:hover {
+    border-color: var(--verde-cancha);
+    background-color: #f0f8f3;
+    transform: translateY(-2px);
+}
+
+.grupo-opciones .form-check-inline .form-check-input {
+    margin-left: -1.4rem;
+}
+
+.form-check-input,
+.form-check-label {
+    cursor: pointer;
+}
+
+/* ---------- Campos: cambiamos el color de enfoque azul de Bootstrap por verde ---------- */
+.form-control,
+.form-select {
+    border-radius: .6rem;
+    padding: .6rem .9rem;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.form-control:hover,
+.form-select:hover {
+    border-color: #9cc4ab;
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-check-input:focus {
+    border-color: var(--verde-cancha);
+    box-shadow: 0 0 0 .25rem rgba(15, 122, 61, .25);
+}
+
+.form-check-input:checked {
+    background-color: var(--verde-cancha);
+    border-color: var(--verde-cancha);
+}
+
+/* ---------- Botones personalizados ---------- */
+.btn-cancha {
+    background-color: var(--verde-cancha);
+    color: var(--blanco-linea);
+    font-weight: 600;
+    padding: .6rem 2rem;
+    border-radius: 50px;
+    border: 2px solid transparent;
+    transition: transform .2s, background-color .2s, box-shadow .2s, color .2s;
+}
+
+.btn-cancha:hover {
+    background-color: var(--verde-oscuro);
+    color: var(--amarillo-tarjeta);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(10, 77, 39, .3);
+}
+
+.btn-outline-secondary {
+    border-radius: 50px;
+    padding: .6rem 1.5rem;
+}
+
+/* ---------- Acordeón de preguntas frecuentes ---------- */
+.acordeon .accordion-item {
+    border: 1px solid var(--borde);
+    border-radius: .8rem;
+    margin-bottom: .75rem;
+    overflow: hidden;
+}
+
+.acordeon .accordion-item:not(:first-of-type) {
+    border-top: 1px solid var(--borde); /* Bootstrap le quita el borde superior; se lo devolvemos */
+}
+
+.acordeon .accordion-button {
+    font-weight: 600;
+    transition: background-color .2s, color .2s;
+}
+
+.acordeon .accordion-button:hover {
+    background-color: #f0f8f3;
+    color: var(--verde-oscuro);
+}
+
+.acordeon .accordion-button:not(.collapsed) {
+    background-color: var(--verde-cancha);
+    color: var(--blanco-linea);
+    box-shadow: none;
+}
+
+/* La flechita del acordeón se pinta de blanco cuando la pregunta está abierta */
+.acordeon .accordion-button:not(.collapsed)::after {
+    filter: brightness(0) invert(1);
+}
+
+.acordeon .accordion-button:focus {
+    box-shadow: 0 0 0 .25rem rgba(15, 122, 61, .25);
+}
+
+/* ---------- Modal de confirmación ---------- */
+.modal-gol {
+    border: none;
+    border-radius: 1rem;
+    border-top: 6px solid var(--amarillo-tarjeta);
+}
+
+/* ---------- Pie de página ---------- */
+.pie {
+    background-color: var(--verde-noche);
+    color: #cfe3d6;
+    padding: 2.5rem 0 1.5rem;
+}
+
+.pie hr {
+    border-color: rgba(255, 255, 255, .3);
+}
+
+.subtitulo-pie {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--amarillo-tarjeta);
+}
+
+.enlace-pie {
+    color: var(--amarillo-tarjeta);
+    text-decoration: none;
+}
+
+.enlace-pie:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Paleta neutra para la página de presentación ----------
+   Volvemos a definir las mismas variables solo dentro de <body class="presentacion">.
+   Así todos los componentes (tarjetas, botones, avatar) se pintan en grises
+   sin tener que repetir sus estilos, y el formulario conserva sus verdes. */
+.presentacion {
+    --verde-cancha: #27272a;   /* botones y avatar: gris casi negro */
+    --verde-oscuro: #09090b;   /* hover de botones y títulos */
+    --verde-noche: #18181b;    /* pie de página */
+    --amarillo-tarjeta: #52525b; /* detalles al pasar el mouse */
+    --fondo: #f4f4f5;
+    --fondo-claro: #e4e4e7;
+    --borde: #d4d4d8;
+    --texto: #18181b;
+    --sombra: 0 10px 30px rgba(0, 0, 0, .08);
+    --sombra-fuerte: 0 18px 40px rgba(0, 0, 0, .14);
+}
+
+/* Encabezado claro, sin el degradado ni las líneas de la cancha */
+.presentacion .encabezado {
+    background: var(--blanco-linea);
+    color: var(--texto);
+    border-bottom: 1px solid var(--borde);
+}
+
+.presentacion .portada-presentacion {
+    background-image: none;
+}
+
+.presentacion .etiqueta {
+    background-color: var(--fondo);
+    color: #52525b;
+    border: 1px solid var(--borde);
+}
+
+.presentacion .btn-cancha:hover {
+    color: var(--blanco-linea);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, .2);
+}
+
+.presentacion .tarjeta-integrante:hover .avatar {
+    color: var(--blanco-linea);
+}
+
+.presentacion .btn-cancha.disabled {
+    color: #71717a;
+}
+
+.presentacion .pie {
+    color: #a1a1aa;
+}
+
+/* ---------- Accesibilidad: si la persona pidió menos movimiento, quitamos animaciones ---------- */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+        animation: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ---------- Responsivo: ajustes para celulares ---------- */
+@media (max-width: 576px) {
+    .tarjeta-formulario {
+        padding: 1.25rem;
+        margin-top: -3rem;
+    }
+
+    .titulo-seccion {
+        font-size: 2rem;
+    }
+
+    .seccion {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+}
